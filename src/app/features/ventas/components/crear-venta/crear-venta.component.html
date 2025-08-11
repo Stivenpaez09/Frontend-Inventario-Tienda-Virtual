@@ -1,0 +1,60 @@
+<h2 mat-dialog-title>Crear Venta</h2>
+<form [formGroup]="form">
+  <mat-dialog-content>
+    <mat-form-field class="full-window margin-bottom" appearance="fill">
+      <mat-label>Seleccione el cliente:</mat-label>
+      <mat-select formControlName="unCliente">
+        <mat-option
+          *ngFor="let cliente of clientes"
+          [value]="cliente.id_cliente"
+          >{{ cliente.nombre }} {{ cliente.apellido }} - C.C
+          {{ cliente.cedula }}
+        </mat-option>
+        <mat-error *ngIf="form.get('cliente')?.hasError('required')"
+          >El cliente es obligatorio para realizar la venta</mat-error
+        >
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="full-window margin-bottom" appearance="fill">
+      <mat-label>Fecha de venta: </mat-label>
+      <input
+        matInput
+        [matDatepicker]="picker"
+        placeholder="Seleccione una fecha"
+        formControlName="fecha_venta"
+      />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="form.get('fecha_venta')?.hasError('required')">
+        El fecha de venta es obligatoria para realizar la venta.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-window margin-bottom">
+      <mat-label>Seleccione los productos de la venta: </mat-label>
+      <mat-select formControlName="listaProductos" multiple>
+        <mat-option
+          *ngFor="let producto of productos"
+          [value]="producto.codigo_producto"
+          >{{ producto.nombre }} - {{ producto.marca }} - {{ producto.costo }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.get('listaProductos')?.hasError('required')"
+        >Debe seleccionar al menos un producto para realizar la venta</mat-error
+      >
+    </mat-form-field>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button (click)="close()">Cancelar</button>
+    <button
+      mat-raised-button
+      color="primary"
+      [disabled]="form.invalid"
+      type="submit"
+      (click)="save()"
+    >
+      Guardar
+    </button>
+  </mat-dialog-actions>
+</form>

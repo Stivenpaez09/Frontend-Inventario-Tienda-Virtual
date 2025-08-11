@@ -1,0 +1,83 @@
+<div class="clientes-container">
+  <app-sidebar class="sidebar"></app-sidebar>
+  <div class="main-content">
+    <app-header class="header"></app-header>
+    <div class="body-content">
+      <div class="ver-card">
+        <h1 class="title-name-text">Ver producto</h1>
+
+        <div class="attribute-section">
+          <span class="infomation-title-text">ID: </span>
+          <span class="information-text">{{ cliente?.id_cliente }}</span>
+          <span></span>
+        </div>
+        <hr class="separator-line" />
+
+        <div class="attribute-section">
+          <span class="infomation-title-text">Nombre: </span>
+          <span class="information-text">{{ cliente?.nombre }}</span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="#ff6f00"
+            viewBox="0 0 256 256"
+            class="all-icons"
+            (click)="openFormEdit('nombre', cliente?.nombre || '')"
+          >
+            <path
+              d="M224.49,136.49l-72,72a12,12,0,0,1-17-17L187,140H40a12,12,0,0,1,0-24H187L135.51,64.48a12,12,0,0,1,17-17l72,72A12,12,0,0,1,224.49,136.49Z"
+            ></path>
+          </svg>
+        </div>
+
+        <hr class="separator-line" />
+
+        <div class="attribute-section">
+          <span class="infomation-title-text">Apellido: </span>
+          <span class="information-text">{{ cliente?.apellido }}</span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="#ff6f00"
+            viewBox="0 0 256 256"
+            class="all-icons"
+            (click)="openFormEdit('apellido', cliente?.apellido || '')"
+          >
+            <path
+              d="M224.49,136.49l-72,72a12,12,0,0,1-17-17L187,140H40a12,12,0,0,1,0-24H187L135.51,64.48a12,12,0,0,1,17-17l72,72A12,12,0,0,1,224.49,136.49Z"
+            ></path>
+          </svg>
+        </div>
+        <hr class="separator-line" />
+
+        <div class="attribute-section">
+          <span class="infomation-title-text">Cedula: </span>
+          <span class="information-text">{{ cliente?.cedula }}</span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="#ff6f00"
+            viewBox="0 0 256 256"
+            class="all-icons"
+            (click)="openFormEdit('cedula', cliente?.cedula || '')"
+          >
+            <path
+              d="M224.49,136.49l-72,72a12,12,0,0,1-17-17L187,140H40a12,12,0,0,1,0-24H187L135.51,64.48a12,12,0,0,1,17-17l72,72A12,12,0,0,1,224.49,136.49Z"
+            ></path>
+          </svg>
+        </div>
+        <hr class="separator-line" />
+
+        <div class="space-return-button">
+          <button routerLink="/ver-clientes" class="return-button">
+            Regresar
+          </button>
+        </div>
+      </div>
+    </div>
+    <app-footer class="footer"></app-footer>
+  </div>
+</div>

@@ -1,0 +1,56 @@
+<h2 mat-dialog-title>Crear Producto</h2>
+<form [formGroup]="form">
+  <mat-dialog-content>
+    <mat-form-field class="full-window margin-bottom" appearance="fill">
+      <mat-label>Nombre: </mat-label>
+      <input matInput formControlName="nombre" />
+      <mat-error *ngIf="form.get('nombre')?.hasError('required')">
+        El nombre del producto es obligatorio. </mat-error
+      ><br />
+    </mat-form-field>
+
+    <mat-form-field class="full-window margin-bottom" appearance="fill">
+      <mat-label>Marca: </mat-label>
+      <input matInput formControlName="marca" />
+      <mat-error *ngIf="form.get('marca')?.hasError('required')">
+        La marca del producto es obligatoria.
+      </mat-error>
+      <br />
+    </mat-form-field>
+
+    <mat-form-field class="full-window margin-bottom" appearance="fill">
+      <mat-label>Valor: </mat-label>
+      <input matInput formControlName="costo" />
+      <mat-error *ngIf="form.get('costo')?.hasError('required')">
+        El valor del producto es obligatorio.
+      </mat-error>
+      <mat-error *ngIf="form.get('costo')?.hasError('min')">
+        El valor del producto no puede ser 0 ni un valor negativo. </mat-error
+      ><br />
+    </mat-form-field>
+
+    <mat-form-field class="full-window" appearance="fill">
+      <mat-label>Cantidad disponible: </mat-label>
+      <input matInput formControlName="cantidad_disponible" />
+      <mat-error *ngIf="form.get('cantidad_disponible')?.hasError('required')">
+        La cantidad disponible del producto es obligatoria.
+      </mat-error>
+      <mat-error *ngIf="form.get('cantidad_disponible')?.hasError('min')">
+        La cantidad disponible no puede ser 0 ni un valor negativo.
+      </mat-error>
+    </mat-form-field>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button (click)="close()">Cancelar</button>
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="form.invalid"
+      (click)="save()"
+    >
+      Guardar
+    </button>
+  </mat-dialog-actions>
+</form>

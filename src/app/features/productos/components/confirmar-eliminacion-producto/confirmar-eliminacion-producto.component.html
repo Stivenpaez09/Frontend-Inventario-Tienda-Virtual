@@ -1,0 +1,9 @@
+<h2 mat-dialog-title>
+  ¿Esta seguro que desea eliminar el producto "{{ data.nombre }}"?
+</h2>
+<mat-dialog-actions align="center" class="dialog-actions">
+  <button mat-button (click)="cancel()">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="confirm()">
+    Eliminar
+  </button>
+</mat-dialog-actions>

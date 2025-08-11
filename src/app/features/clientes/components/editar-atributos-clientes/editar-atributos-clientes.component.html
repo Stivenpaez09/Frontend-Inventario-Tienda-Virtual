@@ -1,0 +1,22 @@
+<h2 mat-dialog-title>Editar {{ data.attribute }} del cliente</h2>
+<form [formGroup]="form">
+  <mat-dialog-content>
+    <mat-form-field class="full-window" appearance="fill">
+      <mat-label>{{ data.attribute }}: </mat-label>
+      <input matInput formControlName="value" />
+    </mat-form-field>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button (click)="close()">Cancelar</button>
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="form.invalid"
+      (click)="save()"
+    >
+      Guardar
+    </button>
+  </mat-dialog-actions>
+</form>

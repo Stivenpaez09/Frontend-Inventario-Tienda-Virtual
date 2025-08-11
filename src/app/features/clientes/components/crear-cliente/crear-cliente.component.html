@@ -1,0 +1,44 @@
+<h2 mat-dialog-title>Crear Cliente</h2>
+<form [formGroup]="form">
+  <mat-dialog-content>
+    <mat-form-field class="full-window margin-bottom" appearance="fill">
+      <mat-label>Nombre: </mat-label>
+      <input matInput formControlName="nombre" />
+      <mat-error *ngIf="form.get('nombre')?.hasError('required')">
+        El nombre del cliente es obligatorio.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-window margin-bottom" appearance="fill">
+      <mat-label>Apellido: </mat-label>
+      <input matInput formControlName="apellido" />
+      <mat-error *ngIf="form.get('apellido')?.hasError('required')">
+        El apellido del cliente es obligatorio.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-window margin-bottom" appearance="fill">
+      <mat-label>Cedula: </mat-label>
+      <input matInput formControlName="cedula" />
+      <mat-error *ngIf="form.get('cedula')?.hasError('required')">
+        La cedula del cliente es obligatoria.
+      </mat-error>
+      <mat-error *ngIf="form.get('cedula')?.hasError('pattern')">
+        La cedula debe tener 10 dígitos.
+      </mat-error>
+    </mat-form-field>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button mat-button (click)="close()">Cancelar</button>
+    <button
+      mat-raised-button
+      color="primary"
+      [disabled]="form.invalid"
+      type="submit"
+      (click)="save()"
+    >
+      Guardar
+    </button>
+  </mat-dialog-actions>
+</form>

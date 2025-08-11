@@ -1,0 +1,144 @@
+<div class="clientes-container">
+  <app-sidebar class="sidebar"></app-sidebar>
+  <div class="main-content">
+    <app-header class="header"></app-header>
+    <div class="body-content">
+      <div class="button-space">
+        <button class="btn-create-cliente" (click)="openFormCreateCliente()">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="#ffffff"
+            viewBox="0 0 256 256"
+          >
+            <path
+              d="M228,128a12,12,0,0,1-12,12H140v76a12,12,0,0,1-24,0V140H40a12,12,0,0,1,0-24h76V40a12,12,0,0,1,24,0v76h76A12,12,0,0,1,228,128Z"
+            ></path>
+          </svg>
+          Crear cliente
+        </button>
+      </div>
+
+      <div class="ventas-space">
+        <div class="title-space">
+          <h1 class="title-name-text">Clientes</h1>
+          <div>
+            <input
+              type="text"
+              placeholder="Buscar cliente por cedula"
+              class="buscar-input"
+              [(ngModel)]="searchText"
+            />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              fill="#ff6f00"
+              viewBox="0 0 256 256"
+              class="all-icons"
+              (click)="(filteredClientes)"
+            >
+              <path
+                d="M232.49,215.51,185,168a92.12,92.12,0,1,0-17,17l47.53,47.54a12,12,0,0,0,17-17ZM44,112a68,68,0,1,1,68,68A68.07,68.07,0,0,1,44,112Z"
+              ></path>
+            </svg>
+          </div>
+        </div>
+
+        <div>
+          <table class="table-clientes">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Cedula</th>
+                <th>Ver más</th>
+                <th>Eliminar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let cliente of paginatedClientes">
+                <td data-label="ID">{{ cliente.id_cliente }}</td>
+                <td data-label="Nombre">{{ cliente.nombre }}</td>
+                <td data-label="Apellido">{{ cliente.apellido }}</td>
+                <td data-label="Cedula">{{ cliente.cedula }}</td>
+                <td data-label="Ver más">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="#ff6f00"
+                    viewBox="0 0 256 256"
+                    class="all-icons"
+                    (click)="optionsCliente(cliente.id_cliente)"
+                  >
+                    <path
+                      d="M251,123.13c-.37-.81-9.13-20.26-28.48-39.61C196.63,57.67,164,44,128,44S59.37,57.67,33.51,83.52C14.16,102.87,5.4,122.32,5,123.13a12.08,12.08,0,0,0,0,9.75c.37.82,9.13,20.26,28.49,39.61C59.37,198.34,92,212,128,212s68.63-13.66,94.48-39.51c19.36-19.35,28.12-38.79,28.49-39.61A12.08,12.08,0,0,0,251,123.13Zm-46.06,33C183.47,177.27,157.59,188,128,188s-55.47-10.73-76.91-31.88A130.36,130.36,0,0,1,29.52,128,130.45,130.45,0,0,1,51.09,99.89C72.54,78.73,98.41,68,128,68s55.46,10.73,76.91,31.89A130.36,130.36,0,0,1,226.48,128,130.45,130.45,0,0,1,204.91,156.12ZM128,84a44,44,0,1,0,44,44A44.05,44.05,0,0,0,128,84Zm0,64a20,20,0,1,1,20-20A20,20,0,0,1,128,148Z"
+                    ></path>
+                  </svg>
+                </td>
+                <td data-label="Eliminar">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="#ff6f00"
+                    viewBox="0 0 256 256"
+                    class="all-icons"
+                    (click)="
+                      openModalConfirmation(cliente.id_cliente, cliente.nombre)
+                    "
+                  >
+                    <path
+                      d="M216,48H180V36A28,28,0,0,0,152,8H104A28,28,0,0,0,76,36V48H40a12,12,0,0,0,0,24h4V208a20,20,0,0,0,20,20H192a20,20,0,0,0,20-20V72h4a12,12,0,0,0,0-24ZM100,36a4,4,0,0,1,4-4h48a4,4,0,0,1,4,4V48H100Zm88,168H68V72H188ZM116,104v64a12,12,0,0,1-24,0V104a12,12,0,0,1,24,0Zm48,0v64a12,12,0,0,1-24,0V104a12,12,0,0,1,24,0Z"
+                    ></path>
+                  </svg>
+                </td>
+              </tr>
+              <tr *ngIf="paginatedClientes.length == 0">
+                <td colspan="6">No hay productos para mostrar</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="table-paginator">
+          <button (click)="prevPage()" [disabled]="currentPage === 1">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="32"
+              height="32"
+              fill="#ff6f00"
+              viewBox="0 0 256 256"
+              class="all-icons"
+            >
+              <path
+                d="M201.75,30.52a20,20,0,0,0-20.3.53L68,102V40a12,12,0,0,0-24,0V216a12,12,0,0,0,24,0V154l113.45,71A20,20,0,0,0,212,208.12V47.88A19.86,19.86,0,0,0,201.75,30.52ZM188,200.73,71.7,128,188,55.27Z"
+              ></path>
+            </svg>
+          </button>
+          <span class="current-pagination"
+            >Pagina {{ currentPage }} de {{ totalPages }}</span
+          >
+          <button (click)="nextPage()" [disabled]="currentPage === totalPages">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="32"
+              height="32"
+              fill="#ff6f00"
+              viewBox="0 0 256 256"
+              class="all-icons"
+            >
+              <path
+                d="M200,28a12,12,0,0,0-12,12v62l-113.45-71A20,20,0,0,0,44,47.88V208.12A20,20,0,0,0,74.55,225L188,154v62a12,12,0,0,0,24,0V40A12,12,0,0,0,200,28ZM68,200.73V55.27L184.3,128Z"
+              ></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <app-footer class="footer"></app-footer>
+  </div>
+</div>

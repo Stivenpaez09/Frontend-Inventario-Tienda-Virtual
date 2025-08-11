@@ -1,0 +1,37 @@
+.header-container {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  flex-grow: 1;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: #f8f9fa;
+}
+
+.information-text {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #1e1e1e;
+  margin: 0;
+}
+
+.texto-nombre-user {
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: #1e1e1e;
+  margin: 0;
+}
+
+.foto-redonda {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.icon-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-content: flex-start;
+}
