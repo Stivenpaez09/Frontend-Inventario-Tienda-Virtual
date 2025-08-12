@@ -124,5 +124,5 @@ export class VerVentasComponent implements OnInit {
     this.router.navigate(['/opciones-ventas', codigo_venta]);
   }
 
-  openModalConfirmation(codigo_venta: number, nombre: string): void {}
+  openModalConfirmation(codigo_venta: number, nombreCliente: string): void {}
 }
