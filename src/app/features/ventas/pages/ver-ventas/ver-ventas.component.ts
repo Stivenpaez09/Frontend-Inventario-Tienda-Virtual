@@ -10,6 +10,7 @@ import { MessageService } from '../../../../core/services/message.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CrearVentaComponent } from '../../components/crear-venta/crear-venta.component';
 import { Router } from '@angular/router';
+import { ConfirmarEliminacionVentaComponent } from '../../components/confirmar-eliminacion-venta/confirmar-eliminacion-venta.component';
 
 @Component({
   selector: 'app-ver-ventas',
@@ -124,5 +125,37 @@ export class VerVentasComponent implements OnInit {
     this.router.navigate(['/opciones-ventas', codigo_venta]);
   }
 
-  openModalConfirmation(codigo_venta: number, nombreCliente: string): void {}
+  openModalConfirmation(codigo_venta: number, nombreCliente: string): void {
+    const dialogRef = this.dialog.open(ConfirmarEliminacionVentaComponent, {
+      width: '500px',
+      data: {
+        codigo_venta,
+        nombreCliente,
+      },
+    });
+
+    dialogRef.afterClosed().subscribe({
+      next: (result) => {
+        if (result) {
+          this.ventaService.deleteVenta(codigo_venta).subscribe({
+            next: (response) => {
+              this.message.showWarning(response.message);
+              this.getVentas();
+            },
+            error: (error) => {
+              this.message.showWarning(
+                error.error?.message || 'Error al eliminar la venta'
+              );
+            },
+          });
+        }
+      },
+      error: (error) => {
+        this.message.showWarning(
+          error.error?.message ||
+            'Error al abrir la confirmación de eliminación'
+        );
+      },
+    });
+  }
 }

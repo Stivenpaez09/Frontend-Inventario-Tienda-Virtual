@@ -85,7 +85,7 @@ export class VerClientesComponent implements OnInit {
     this.clienteService.getClientes().subscribe({
       next: (clientes) => {
         this.clientes = clientes;
-        this.searchResults = clientes.reverse();
+        this.searchResults = clientes;
       },
       error: (error) => {
         this.mesage.showWarning(

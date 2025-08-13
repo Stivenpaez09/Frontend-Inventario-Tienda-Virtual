@@ -1,10 +1,10 @@
 <h2 mat-dialog-title>
-    ¿Esta seguro que desea eliminar el producto "{{ data.codigo_venta }} del cliente {{data.nombreCliente}}"?
-  </h2>
-  <mat-dialog-actions align="center" class="dialog-actions">
-    <button mat-button (click)="cancel()">Cancelar</button>
-    <button mat-raised-button color="primary" (click)="confirm()">
-      Eliminar
-    </button>
-  </mat-dialog-actions>
-  
+  ¿Esta seguro que desea eliminar el producto de ID {{ data.codigo_venta }} del
+  cliente {{ data.nombreCliente }}?
+</h2>
+<mat-dialog-actions align="center" class="dialog-actions">
+  <button mat-button (click)="cancel()">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="confirm()">
+    Eliminar
+  </button>
+</mat-dialog-actions>
