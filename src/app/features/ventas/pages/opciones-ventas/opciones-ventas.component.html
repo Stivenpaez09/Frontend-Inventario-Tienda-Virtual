@@ -1,1 +1,71 @@
-<p>opciones-ventas works!</p>
+<div class="ventas-container">
+  <app-sidebar class="sidebar"></app-sidebar>
+  <div class="main-content">
+    <app-header class="header"></app-header>
+    <div class="body-content">
+      <div class="ver-card">
+        <div class="icono">
+          <img src="/assets/logo.png" alt="Logo de factura" />
+        </div>
+
+        <h1 class="title-name-text">Factura Tienda Virtual</h1>
+
+        <div class="info-space">
+          <span class="information-title-text">ID: </span>
+          <span class="information-text">{{ venta?.codigo_venta }}</span>
+        </div>
+
+        <div class="info-space">
+          <span class="information-title-text">Fecha de venta: </span>
+          <span class="information-text">{{ venta?.fecha_venta }}</span>
+        </div>
+
+        <div class="info-space">
+          <span class="information-title-text">Nombre: </span>
+          <span class="information-text">{{ venta?.unCliente?.cedula }}</span>
+        </div>
+
+        <div class="info-space">
+          <span class="information-title-text">Cedula: </span>
+          <span class="information-text"
+            >{{ venta?.unCliente?.nombre }}
+            {{ venta?.unCliente?.apellido }}</span
+          >
+        </div>
+
+        <p class="productos-title-section">Lista de productos</p>
+
+        <table class="productos-table">
+          <thead>
+            <tr>
+              <th>Codigo Producto</th>
+              <th>Nombre</th>
+              <th>Precio</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let producto of venta?.listaProductos">
+              <td>{{ producto.codigo_producto }}</td>
+              <td>{{ producto.nombre }} - {{ producto.marca }}</td>
+              <td>{{ producto.costo }}</td>
+            </tr>
+            <tr *ngIf="venta?.listaProductos?.length === 0">
+              <td colspan="3">No hay Productos en esta venta</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="total-space">
+          <span class="information-title-text">Total: </span>
+          <span class="information-text">{{ venta?.total }}</span>
+        </div>
+
+        <div class="space-return-button">
+          <button routerLink="/ver-ventas" class="return-button">
+            Regresar
+          </button>
+        </div>
+      </div>
+    </div>
+    <app-footer class="footer"></app-footer>
+  </div>
+</div>

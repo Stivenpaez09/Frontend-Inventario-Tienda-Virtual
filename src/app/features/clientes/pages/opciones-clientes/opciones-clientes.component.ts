@@ -53,6 +53,7 @@ export class OpcionesClientesComponent implements OnInit {
           error.error?.message || 'Error al buscar el cliente.'
         );
         this.router.navigate(['/ver-clientes']);
+        return;
       },
     });
   }
