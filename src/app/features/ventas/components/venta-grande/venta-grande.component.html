@@ -1,0 +1,26 @@
+<h2 mat-dialog-title class="message-title">Venta mas grande realizada</h2>
+<mat-dialog-content class="venta-space">
+  <div class="attribute-section">
+    <span class="attribute-title"> Codigo de venta: </span>
+    <span>{{ venta?.codigo_venta }}</span>
+  </div>
+  <div class="attribute-section">
+    <span class="attribute-title"> Nombre del cliente: </span>
+    <span>{{ venta?.nombreCliente }}</span>
+  </div>
+  <div class="attribute-section">
+    <span class="attribute-title"> Apellido del cliente: </span>
+    <span>{{ venta?.apellidoCliente }}</span>
+  </div>
+  <div class="attribute-section">
+    <span class="attribute-title"> Cantidad de productos comprados: </span>
+    <span>{{ venta?.listaProductos }}</span>
+  </div>
+  <div class="attribute-section">
+    <span class="attribute-title"> Total de la venta: </span>
+    <span>{{ venta?.total }}</span>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions class="button-space">
+  <button mat-raised-button (click)="close()">Salir</button>
+</mat-dialog-actions>

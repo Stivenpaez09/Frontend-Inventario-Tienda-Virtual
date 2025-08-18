@@ -11,6 +11,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { CrearVentaComponent } from '../../components/crear-venta/crear-venta.component';
 import { Router } from '@angular/router';
 import { ConfirmarEliminacionVentaComponent } from '../../components/confirmar-eliminacion-venta/confirmar-eliminacion-venta.component';
+import { TotalVentasDiariasComponent } from '../../components/total-ventas-diarias/total-ventas-diarias.component';
+import { VentaGrandeComponent } from '../../components/venta-grande/venta-grande.component';
 
 @Component({
   selector: 'app-ver-ventas',
@@ -28,6 +30,7 @@ export class VerVentasComponent implements OnInit {
   private ventas: ShowVentas[] = [];
   searchResults: ShowVentas[] = [];
   searchText: string = '';
+  typeSearch: string = 'cedula';
   pageSize = 10;
   currentPage = 1;
 
@@ -62,6 +65,10 @@ export class VerVentasComponent implements OnInit {
       return;
     }
 
+    if (this.typeSearch === 'cedula') {
+    }
+    if (this.typeSearch === 'fecha') {
+    }
     this.searchResults = this.ventas.filter((venta) =>
       venta.cedulaCliente.toLowerCase().includes(this.searchText.toLowerCase())
     );
@@ -156,6 +163,18 @@ export class VerVentasComponent implements OnInit {
             'Error al abrir la confirmación de eliminación'
         );
       },
+    });
+  }
+
+  openWindowSeeVentaForDay(): void {
+    this.dialog.open(TotalVentasDiariasComponent, {
+      width: '500px',
+    });
+  }
+
+  openWindowBiggestVenta(): void {
+    this.dialog.open(VentaGrandeComponent, {
+      width: '500px',
     });
   }
 }

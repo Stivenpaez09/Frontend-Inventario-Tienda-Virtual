@@ -1,6 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BiggestVenta, ShowVentas, Venta } from '../models/venta.model';
+import {
+  BiggestVenta,
+  ShowVentas,
+  TotalVentasDiarias,
+  Venta,
+} from '../models/venta.model';
 import { Observable } from 'rxjs';
 import { logDev } from '../../../core/utils/logger.util';
 import { environment } from '../../../../environments/environment';
@@ -126,13 +131,13 @@ export class VentaService {
   }
 
   //Llama al backend para que de un informe general sobre la ventas realizadas en un dia en especifico y el dinero total recaudado
-  findVentasByDate(fecha_venta: number): Observable<{ message: string }> {
+  findVentasByDate(fecha_venta: string): Observable<TotalVentasDiarias> {
     logDev(
       'Obteniendo las ventas por fechas desde: ',
       `${this.API_VENTAS}/fecha/${fecha_venta}`
     );
 
-    return this.http.get<{ message: string }>(
+    return this.http.get<TotalVentasDiarias>(
       `${this.API_VENTAS}/fecha/${fecha_venta}`
     );
   }

@@ -1,0 +1,45 @@
+.full-window {
+  width: 100%;
+}
+
+.margin-bottom {
+  margin-bottom: 1rem;
+}
+
+.button-space {
+  display: flex;
+  justify-content: center;
+}
+
+.venta-space {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 12px;
+  padding: 0px 24px;
+  margin: 0px;
+  margin-top: 1rem;
+  box-shadow: 0 2px 8px rgba(255, 111, 0, 0.08);
+
+  p {
+    font-size: 1.08rem;
+    margin: 0.25rem 0;
+    text-align: center;
+  }
+}
+
+.venta-content {
+  width: 100%;
+  background-color: #f4ded3;
+  border-radius: 8px;
+  padding: 1rem;
+  padding: 0%;
+}
+
+.message-title {
+  font-size: 1.35rem;
+  font-weight: bold;
+  color: #ff6f00;
+  margin-bottom: 0.75rem;
+  text-align: center;
+}

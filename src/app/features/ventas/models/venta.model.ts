@@ -31,3 +31,10 @@ export interface ShowVentas {
   cantidadProductos: number;
   total: number;
 }
+
+export interface TotalVentasDiarias {
+  message: string;
+  fecha: string;
+  total_ventas: string;
+  dinero_total: string;
+}
