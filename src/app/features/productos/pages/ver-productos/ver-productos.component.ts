@@ -27,7 +27,6 @@ import { ConfirmarEliminacionProductoComponent } from '../../components/confirma
 })
 export class VerProductosComponent implements OnInit {
   private productos: Producto[] = [];
-  searchResults: Producto[] = [];
   searchText: string = '';
   pageSize = 10;
   currentPage = 1;
@@ -46,7 +45,6 @@ export class VerProductosComponent implements OnInit {
     this.productoService.getProductos().subscribe({
       next: (productos) => {
         this.productos = productos;
-        this.searchResults = productos;
       },
       error: (error) => {
         this.message.showWarning(
@@ -56,26 +54,27 @@ export class VerProductosComponent implements OnInit {
     });
   }
 
-  get filteredProductos(): void {
+  get filteredProductos(): Producto[] {
     if (!this.searchText.trim()) {
-      this.searchResults = this.productos;
-      return;
+      return this.productos;
     }
 
-    this.searchResults = this.productos.filter((producto) =>
+    return this.productos.filter((producto) =>
       producto.nombre.toLowerCase().includes(this.searchText.toLowerCase())
     );
-
-    this.currentPage = 1;
   }
 
   get paginatedProductos(): Producto[] {
     const startIndex = (this.currentPage - 1) * this.pageSize;
-    return this.searchResults.slice(startIndex, startIndex + this.pageSize);
+    return this.filteredProductos.slice(startIndex, startIndex + this.pageSize);
   }
 
   get totalPages(): number {
-    return Math.ceil(this.searchResults.length / this.pageSize);
+    return Math.ceil(this.filteredProductos.length / this.pageSize);
+  }
+
+  onSearchChange(): void {
+    this.currentPage = 1;
   }
 
   prevPage(): void {
@@ -90,7 +89,7 @@ export class VerProductosComponent implements OnInit {
     }
   }
 
-  optionsProducto(codigo_producto: number) {
+  optionsProducto(codigo_producto: number): void {
     this.router.navigate(['/opciones-producto', codigo_producto]);
   }
 
@@ -123,7 +122,7 @@ export class VerProductosComponent implements OnInit {
     });
   }
 
-  openModalConfirmation(codigo_producto: number, nombre: string) {
+  openModalConfirmation(codigo_producto: number, nombre: string): void {
     const dialogRef = this.dialog.open(ConfirmarEliminacionProductoComponent, {
       width: '500px',
       data: { nombre: nombre },

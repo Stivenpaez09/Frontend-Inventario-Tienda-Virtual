@@ -46,6 +46,7 @@
               placeholder="Buscar producto por nombre"
               class="buscar-input"
               [(ngModel)]="searchText"
+              (ngModelChange)="onSearchChange()"
             />
             <svg
               xmlns="http://www.w3.org/2000/svg"
