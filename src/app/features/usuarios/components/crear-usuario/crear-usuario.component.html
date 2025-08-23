@@ -1,0 +1,103 @@
+<h2 mat-dialog-title>Crear Venta</h2>
+<form [formGroup]="form">
+  <mat-dialog-content>
+    <mat-form-field class="full-window margin-bottom" appearance="fill">
+      <mat-label>Nombre: </mat-label>
+      <input matInput formControlName="nombre" />
+      <mat-error *ngIf="form.get('nombre')?.hasError('required')">
+        El nombre del usuario es obligatorio.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-window margin-bottom" appearance="fill">
+      <mat-label>Apellido: </mat-label>
+      <input matInput formControlName="apellido" />
+      <mat-error *ngIf="form.get('apellido')?.hasError('required')">
+        El apellido del usuario es obligatorio.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-window margin-bottom" appearance="fill">
+      <mat-label>Fecha de nacimiento: </mat-label>
+      <input
+        matInput
+        [matDatepicker]="picker"
+        placeholder="Seleccione una fecha"
+        formControlName="fecha_nacimiento"
+      />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="form.get('fecha_nacimiento')?.hasError('required')">
+        La fecha de nacimiento del usuario es obligatoria.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-window margin-bottom" appearance="fill">
+      <mat-label>Telefono: </mat-label>
+      <input matInput formControlName="telefono" />
+      <mat-error *ngIf="form.get('telefono')?.hasError('required')">
+        El telefono del usuario es obligatorio.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-window margin-bottom" appearance="fill">
+      <mat-label>Cedula: </mat-label>
+      <input matInput formControlName="cedula" />
+      <mat-error *ngIf="form.get('cedula')?.hasError('required')">
+        El cedula del usuario es obligatorio.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-window margin-bottom" appearance="fill">
+      <mat-label>Dirección: </mat-label>
+      <input matInput formControlName="direccion" />
+      <mat-error *ngIf="form.get('direccion')?.hasError('required')">
+        La dirección del usuario es obligatoria.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-window margin-bottom" appearance="fill">
+      <mat-label>Username: </mat-label>
+      <input matInput formControlName="username" />
+      <mat-error *ngIf="form.get('username')?.hasError('required')">
+        El username del usuario es obligatorio.
+      </mat-error>
+      <mat-error *ngIf="form.get('username')?.hasError('email')">
+        El username del usuario debe ser de tipo email.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-window margin-bottom" appearance="fill">
+      <mat-label>Contraseña: </mat-label>
+      <input matInput formControlName="password" />
+      <mat-error *ngIf="form.get('password')?.hasError('required')">
+        La contraseña del usuario es obligatoria.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-window margin-bottom">
+      <mat-label>Seleccione el rol del usuario: </mat-label>
+      <mat-select formControlName="unRol">
+        <mat-option *ngFor="let rol of roles" [value]="rol.id_rol">
+          {{ rol.id_rol }}. {{ rol.nombre }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.get('unRol')?.hasError('required')"
+        >Debe seleccionar un rol para el usuario</mat-error
+      >
+    </mat-form-field>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button mat-button (click)="close()">Cancelar</button>
+    <button
+      mat-raised-button
+      color="primary"
+      [disabled]="form.invalid"
+      type="submit"
+      (click)="save()"
+    >
+      Guardar
+    </button>
+  </mat-dialog-actions>
+</form>

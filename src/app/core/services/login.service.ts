@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, Subscription, throwError } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 import { interval } from 'rxjs';
 import {
   LoginRequest,
@@ -9,7 +9,6 @@ import {
   JwtPayload,
   AuthenticatedLogin,
   LoginRol,
-  AuthError,
   LoginProfile,
 } from '../models/auth.interfaces';
 import { environment } from '../../../environments/environment';

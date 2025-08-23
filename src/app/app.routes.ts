@@ -116,6 +116,26 @@ export const routes: Routes = [
         canActivate: [AuthGuard],
         data: { roles: ['ROLE_ADMINISTRADOR', 'ROLE_ASISTENTE'] },
       },
+      {
+        path: 'ver-usuarios',
+        loadComponent: () =>
+          import(
+            './features/usuarios/pages/ver-usuarios/ver-usuarios.component'
+          ).then((m) => m.VerUsuariosComponent),
+        title: 'Usuarios',
+        canActivate: [AuthGuard],
+        data: { roles: ['ROLE_ADMINISTRADOR'] },
+      },
+      {
+        path: 'opciones-usuarios/:id',
+        loadComponent: () =>
+          import(
+            './features/usuarios/pages/opciones-usuarios/opciones-usuarios.component'
+          ).then((m) => m.OpcionesUsuariosComponent),
+        title: 'Usuarios',
+        canActivate: [AuthGuard],
+        data: { roles: ['ROLE_ADMINISTRADOR'] },
+      },
     ],
   },
 ];

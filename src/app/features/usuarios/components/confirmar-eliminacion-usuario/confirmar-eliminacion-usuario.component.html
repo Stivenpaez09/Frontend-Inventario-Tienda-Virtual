@@ -1,0 +1,12 @@
+<h2 mat-dialog-title>
+  ¿Esta seguro que desea eliminar al usuario "{{ data.username }}" con rol "{{
+    data.rol
+  }}"
+</h2>
+
+<mat-dialog-actions align="center" class="dialog-actions">
+  <button mat-button (click)="close()">Cancelar</button>
+  <button mat-raised-button color="primary" type="submit" (click)="confirm()">
+    Eliminar
+  </button>
+</mat-dialog-actions>
