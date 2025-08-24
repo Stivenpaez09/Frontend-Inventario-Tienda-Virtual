@@ -9,13 +9,14 @@ import { Rol } from '../../models/rol.model';
 import { RolService } from '../../services/rol.service';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MessageService } from '../../../../core/services/message.service';
-import { CommonModule } from '@angular/common';
+import { CommonModule, formatDate } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
+import { Login } from '../../models/login.model';
 
 @Component({
   selector: 'app-crear-usuario',
@@ -79,5 +80,39 @@ export class CrearUsuarioComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  save(): void {}
+  save(): void {
+    if(this.form.valid){
+      const usuario = {
+        ...this.form.value,
+        fecha_nacimiento: formatDate(
+          this.form.value.fecha_nacimiento,
+          'yyyy-MM-dd',
+          'en'
+        ) } as Login;
+
+      if(!usuario.nombre.trim() ||
+        usuario.apellido.trim() || 
+        usuario.telefono.trim() ||
+        usuario.cedula.trim() ||
+        usuario.direccion.trim() ||
+        usuario.username.trim() ||
+        usuario.password.trim()){
+        this.message.showWarning("Los campos no pueden estar vacios.");
+        return;
+      }
+
+      if(isNaN(usuario.unRol)){
+        this.message.showWarning("Debe seleccionar un rol.");
+        return;
+      }
+
+      this.dialogRef.close(usuario)
+    } else {
+      this.message.showWarning(
+        'Por favor, complete el formulario correctanmente.'
+      );
+      return;
+    }
+  }
+  
 }
