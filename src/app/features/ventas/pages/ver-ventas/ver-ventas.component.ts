@@ -122,7 +122,7 @@ export class VerVentasComponent implements OnInit {
       },
       error: (error) => {
         this.message.showWarning(
-          error.error?.message || 'No se pudon abrir el formulario de venta'
+          error.error?.message || 'No se pudo abrir el formulario de venta'
         );
       },
     });
