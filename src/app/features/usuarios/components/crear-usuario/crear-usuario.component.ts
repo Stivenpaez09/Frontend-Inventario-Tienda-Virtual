@@ -51,8 +51,8 @@ export class CrearUsuarioComponent implements OnInit {
       fecha_nacimiento: ['', Validators.required],
       telefono: ['', Validators.required],
       cedula: ['', Validators.required],
-      direccion: ['', [Validators.required, Validators.email]],
-      username: ['', Validators.required],
+      direccion: ['', Validators.required],
+      username: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
       unRol: ['', Validators.required],
     });
@@ -81,32 +81,35 @@ export class CrearUsuarioComponent implements OnInit {
   }
 
   save(): void {
-    if(this.form.valid){
+    if (this.form.valid) {
       const usuario = {
         ...this.form.value,
         fecha_nacimiento: formatDate(
           this.form.value.fecha_nacimiento,
           'yyyy-MM-dd',
           'en'
-        ) } as Login;
+        ),
+      } as Login;
 
-      if(!usuario.nombre.trim() ||
-        usuario.apellido.trim() || 
-        usuario.telefono.trim() ||
-        usuario.cedula.trim() ||
-        usuario.direccion.trim() ||
-        usuario.username.trim() ||
-        usuario.password.trim()){
-        this.message.showWarning("Los campos no pueden estar vacios.");
+      if (
+        !usuario.nombre.trim() ||
+        !usuario.apellido.trim() ||
+        !usuario.telefono.trim() ||
+        !usuario.cedula.trim() ||
+        !usuario.direccion.trim() ||
+        !usuario.username.trim() ||
+        !usuario.password.trim()
+      ) {
+        this.message.showWarning('Los campos no pueden estar vacios.');
         return;
       }
 
-      if(isNaN(usuario.unRol)){
-        this.message.showWarning("Debe seleccionar un rol.");
+      if (isNaN(usuario.unRol)) {
+        this.message.showWarning('Debe seleccionar un rol.');
         return;
       }
 
-      this.dialogRef.close(usuario)
+      this.dialogRef.close(usuario);
     } else {
       this.message.showWarning(
         'Por favor, complete el formulario correctanmente.'
@@ -114,5 +117,4 @@ export class CrearUsuarioComponent implements OnInit {
       return;
     }
   }
-  
 }

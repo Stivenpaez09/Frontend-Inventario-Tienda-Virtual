@@ -21,3 +21,14 @@ export interface ShowLogin {
   username: string;
   rol: string;
 }
+
+export interface LoginUpdate {
+  nombre: string;
+  apellido: string;
+  fecha_nacimiento: string;
+  telefono: string;
+  cedula: string;
+  direccion: string;
+  password: string;
+  unRol: number;
+}

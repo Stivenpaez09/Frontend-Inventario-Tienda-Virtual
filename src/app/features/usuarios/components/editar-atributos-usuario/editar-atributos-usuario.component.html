@@ -1,1 +1,91 @@
-<p>editar-atributos-usuario works!</p>
+<h2 mat-dialog-title>Editar {{ data.label }}</h2>
+<form [formGroup]="form">
+  <mat-dialog-content>
+    <mat-form-field
+      *ngIf="data.attribute == 'nombre'"
+      class="full-window"
+      appearance="fill"
+    >
+      <mat-label>{{ data.label }}: </mat-label>
+      <input matInput formControlName="value" />
+    </mat-form-field>
+
+    <mat-form-field
+      *ngIf="data.attribute == 'apellido'"
+      class="full-window"
+      appearance="fill"
+    >
+      <mat-label>{{ data.label }}: </mat-label>
+      <input matInput formControlName="value" />
+    </mat-form-field>
+
+    <mat-form-field
+      *ngIf="data.attribute == 'fecha_nacimiento'"
+      class="full-window"
+      appearance="fill"
+    >
+      <mat-label>Fecha de venta: </mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="value" />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field
+      *ngIf="data.attribute == 'telefono'"
+      class="full-window"
+      appearance="fill"
+    >
+      <mat-label>{{ data.label }}: </mat-label>
+      <input matInput formControlName="value" />
+    </mat-form-field>
+
+    <mat-form-field
+      *ngIf="data.attribute == 'cedula'"
+      class="full-window"
+      appearance="fill"
+    >
+      <mat-label>{{ data.label }}: </mat-label>
+      <input matInput formControlName="value" />
+    </mat-form-field>
+
+    <mat-form-field
+      *ngIf="data.attribute == 'direccion'"
+      class="full-window"
+      appearance="fill"
+    >
+      <mat-label>{{ data.label }}: </mat-label>
+      <input matInput formControlName="value" />
+    </mat-form-field>
+
+    <mat-form-field
+      *ngIf="data.attribute == 'password'"
+      class="full-window"
+      appearance="fill"
+    >
+      <mat-label>{{ data.label }}: </mat-label>
+      <input matInput formControlName="value" />
+    </mat-form-field>
+
+    <mat-form-field *ngIf="data.attribute == 'unRol'" class="full-window">
+      <mat-label>Seleccione un rol: </mat-label>
+      <mat-select formControlName="value">
+        <mat-option *ngFor="let rol of roles" [value]="rol.id_rol"
+          >{{ rol.id_rol }} - {{ rol.nombre.slice(5).toLocaleLowerCase() }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button mat-button (click)="close()">Cancelar</button>
+    <button
+      mat-raised-button
+      color="primary"
+      [disabled]="form.invalid"
+      type="submit"
+      (click)="save()"
+    >
+      Guardar
+    </button>
+  </mat-dialog-actions>
+</form>

@@ -28,8 +28,7 @@ export class OpcionesVentasComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private ventaService: VentaService,
     private message: MessageService,
-    private router: Router,
-    private dialog: MatDialog
+    private router: Router
   ) {}
 
   ngOnInit(): void {

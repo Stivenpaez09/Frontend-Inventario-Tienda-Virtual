@@ -106,22 +106,6 @@ export class UsuarioService {
     );
   }
 
-  updateCedulaLogin(
-    id_login: number,
-    newValue: string
-  ): Observable<{ message: string }> {
-    logDev(
-      `Actualizando la cedula del login con ID ${id_login} a ${newValue} desde ${this.API_LOGIN}`
-    );
-
-    const body = { cedula: newValue };
-
-    return this.http.patch<{ message: string }>(
-      `${this.API_LOGIN}/${id_login}/cedula`,
-      body
-    );
-  }
-
   updateDireccionLogin(
     id_login: number,
     newValue: string
@@ -156,7 +140,7 @@ export class UsuarioService {
 
   updateRolLogin(
     id_login: number,
-    newValue: string
+    newValue: number
   ): Observable<{ message: string }> {
     logDev(
       `Actualizando el rol del login con ID ${id_login} a ${newValue} desde ${this.API_LOGIN}`

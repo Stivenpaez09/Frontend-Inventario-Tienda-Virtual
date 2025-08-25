@@ -10,6 +10,7 @@ import { UsuarioService } from '../../services/usuario.service';
 import { MessageService } from '../../../../core/services/message.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmarEliminacionUsuarioComponent } from '../../components/confirmar-eliminacion-usuario/confirmar-eliminacion-usuario.component';
+import { CrearUsuarioComponent } from '../../components/crear-usuario/crear-usuario.component';
 
 @Component({
   selector: 'app-ver-usuarios',
@@ -119,5 +120,33 @@ export class VerUsuariosComponent implements OnInit {
     });
   }
 
-  openFormCreateLogin(): void {}
+  openFormCreateLogin(): void {
+    const dialogRef = this.dialog.open(CrearUsuarioComponent, {
+      width: '500px',
+    });
+
+    dialogRef.afterClosed().subscribe({
+      next: (usuario) => {
+        if (usuario) {
+          this.usuarioService.createLogin(usuario).subscribe({
+            next: (response) => {
+              this.message.showWarning(response.message);
+              this.getUsuarios();
+            },
+            error: (error) => {
+              this.message.showWarning(
+                error.error?.message || 'Error al crear el usuario'
+              );
+            },
+          });
+        }
+      },
+      error: (error) => {
+        this.message.showWarning(
+          error.error?.message ||
+            'No fue posible abrir el formulario para crear un nuevo usuario'
+        );
+      },
+    });
+  }
 }
