@@ -27,6 +27,7 @@ import { CrearUsuarioComponent } from '../../components/crear-usuario/crear-usua
 export class VerUsuariosComponent implements OnInit {
   usuarios: ShowLogin[] = [];
   searchText: string = '';
+  searchTextActivo: string = '';
   pageSize: number = 10;
   currentPage: number = 1;
 
@@ -60,7 +61,9 @@ export class VerUsuariosComponent implements OnInit {
     }
 
     return this.usuarios.filter((usuario) =>
-      usuario.username.toLowerCase().includes(this.searchText.toLowerCase())
+      usuario.username
+        .toLowerCase()
+        .includes(this.searchTextActivo.toLowerCase())
     );
   }
 
@@ -73,7 +76,8 @@ export class VerUsuariosComponent implements OnInit {
     return Math.ceil(this.filteredUsuarios.length / this.pageSize);
   }
 
-  onSearchChange(): void {
+  buscarUsuarios(): void {
+    this.searchTextActivo = this.searchText;
     this.currentPage = 1;
   }
 
