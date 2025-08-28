@@ -52,11 +52,7 @@
       <!-- En caso de tener algun error aparecera automaticamente aqui -->
       <p class="error">{{ loginError }}</p>
       <div class="div-button">
-        <button
-          type="submit"
-          [disabled]="loginForm.invalid"
-          class="button-send"
-        >
+        <button type="submit" class="button-send">
           {{ isLoading ? "Cargando..." : "Iniciar Sesión" }}
         </button>
       </div>

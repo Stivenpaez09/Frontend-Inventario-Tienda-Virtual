@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { LoginService } from '../../../core/services/login.service';
 
@@ -12,7 +12,7 @@ import { LoginService } from '../../../core/services/login.service';
 export class SidebarComponent implements OnInit {
   administrador: boolean = false;
 
-  constructor(private loginService: LoginService) {}
+  constructor(private loginService: LoginService, private router: Router) {}
 
   ngOnInit(): void {
     this.isAdminitrador();
@@ -28,5 +28,15 @@ export class SidebarComponent implements OnInit {
 
   logout() {
     this.loginService.logout();
+  }
+
+  homePage() {
+    if (this.administrador) {
+      this.router.navigate(['/dashboard-admin']);
+    }
+
+    if (!this.administrador) {
+      this.router.navigate(['/dashboard-asistente']);
+    }
   }
 }

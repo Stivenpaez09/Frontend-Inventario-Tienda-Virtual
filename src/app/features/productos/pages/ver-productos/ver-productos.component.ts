@@ -28,6 +28,7 @@ import { ConfirmarEliminacionProductoComponent } from '../../components/confirma
 export class VerProductosComponent implements OnInit {
   private productos: Producto[] = [];
   searchText: string = '';
+  searchTextActivo: string = '';
   pageSize = 10;
   currentPage = 1;
   constructor(
@@ -60,7 +61,9 @@ export class VerProductosComponent implements OnInit {
     }
 
     return this.productos.filter((producto) =>
-      producto.nombre.toLowerCase().includes(this.searchText.toLowerCase())
+      producto.nombre
+        .toLowerCase()
+        .includes(this.searchTextActivo.toLowerCase())
     );
   }
 
@@ -73,7 +76,8 @@ export class VerProductosComponent implements OnInit {
     return Math.ceil(this.filteredProductos.length / this.pageSize);
   }
 
-  onSearchChange(): void {
+  buscarProductos(): void {
+    this.searchTextActivo = this.searchText;
     this.currentPage = 1;
   }
 

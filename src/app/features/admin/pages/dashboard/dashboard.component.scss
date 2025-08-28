@@ -31,5 +31,120 @@
 
 .body-content {
   flex-grow: 1;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
   padding: 2rem;
+}
+
+.user-card {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  border: 1px solid #dee2e6;
+  border-radius: 20px;
+  padding: 1rem 2rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  justify-content: space-around;
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.title-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #1e1e1e;
+  margin: 0;
+  padding-bottom: 1rem;
+}
+
+.attributes-space {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.title-attribute {
+  color: #555555;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.options-space {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 2rem;
+  width: 100%;
+}
+
+.option-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ffffff;
+  border: 1px solid #dee2e6;
+  border-radius: 20px;
+  padding: 1rem 2rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  justify-content: space-around;
+  width: 100%;
+  height: 100%;
+}
+
+.image {
+  width: 150px;
+  height: 150px;
+}
+
+.information-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.text-card {
+  color: #1e1e1e;
+  font-size: 1rem;
+  padding-right: 1rem;
+}
+
+.all-icons {
+  display: flex;
+  align-self: center;
+  cursor: pointer;
+  outline: none;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s;
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    opacity: 0.9;
+  }
+
+  &:active {
+    transform: scale(0.98);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  }
+}
+
+@media (max-width: 1000px) {
+  .attributes-space {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .attribute-option {
+    margin-bottom: 0.5rem;
+  }
+
+  .options-space {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 100%;
+  }
 }
