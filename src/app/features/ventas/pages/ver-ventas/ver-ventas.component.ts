@@ -177,4 +177,18 @@ export class VerVentasComponent implements OnInit {
       width: '500px',
     });
   }
+
+  downloadVentas(): void {
+    this.ventaService.generateReportVentas().subscribe((data: Blob) => {
+      const file = new Blob([data], { type: 'application/pdf' });
+      const fileUrl = window.URL.createObjectURL(file);
+      const a = document.createElement('a');
+      a.href = fileUrl;
+      a.download = 'reporte_ventas.pdf';
+      a.click();
+
+      // Liberar memoria
+      window.URL.revokeObjectURL(fileUrl);
+    });
+  }
 }

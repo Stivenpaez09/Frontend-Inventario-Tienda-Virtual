@@ -151,4 +151,12 @@ export class VentaService {
 
     return this.http.get<BiggestVenta>(`${this.API_VENTAS}/mayorventa`);
   }
+
+  generateReportVentas(): Observable<Blob> {
+    logDev(`Generando pdf desde: ${this.API_VENTAS}/generarpdf`);
+
+    return this.http.get(`${this.API_VENTAS}/generarpdf`, {
+      responseType: 'blob',
+    });
+  }
 }
